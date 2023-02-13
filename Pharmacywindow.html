@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .image-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+      width: 300px;
+      height: 400px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 60%;
+    }
+
+    .image-info {
+      padding: 10px;
+      font-size: 14px;
+      text-align: center;
+      background-color: lightgray;
+    }
+  </style>
+</head>
+
+
+<body onload="checkForNewImages()">
+  <div id="images" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
+
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="/sketch.js"></script> -->
+    <script>
+
+
+
+      function checkForNewImages() {
+  // Read the last line of the text file containing the paths of the images
+  $.ajax({
+    url: "http://127.0.0.1:5500/ListFilename.txt",
+    
+   
+    success: function(data) {
+      // Split the contents of the file into separate lines
+      var lines = data.split("\n");
+      
+      // Get the last line (which should contain the path of the most recently added image)
+      let addedFilenames = JSON.parse(localStorage.getItem("addedFilenames")) || [];
+      let imageOrder = JSON.parse(localStorage.getItem("imageOrder")) || [];
+      var lastLine = lines[lines.length - 2];
+      // Check if the last image has already been added
+      if (!addedFilenames.includes(lastLine)) {
+        // Add the last image to the added filenames list
+        addedFilenames.push(lastLine);
+        imageOrder.push(lastLine);
+        // Store the updated list of added filenames and image order in local storage
+        localStorage.setItem("addedFilenames", JSON.stringify(addedFilenames));
+        localStorage.setItem("imageOrder", JSON.stringify(imageOrder));
+
+        // Only add the image container if the last line is not empty (i.e., if a new image has been added)
+        console.log(lastLine.trim().length);
+        if (lastLine.trim().length > 0) {
+          // Sort the images based on the order they were added
+          imageOrder.sort(function(a, b) {
+            return addedFilenames.indexOf(a) - addedFilenames.indexOf(b);
+          });
+          
+          // Remove any existing images from the "images" container
+          $("#images").empty();
+          
+          // Add the sorted images to the "images" container
+          for (let i = 0; i < imageOrder.length; i++) {
+            let filename = imageOrder[i];
+            $("#images").append(
+              `<div class="image-container">
+                <img src="${lines[i]}" alt="Image">
+                <div class="image-info">
+                  Image path: ${filename}
+                  <br>
+                  Image name: ${filename.split("/").pop()}
+                  <br>
+                  Image size: 200x200
+                </div>
+              </div>`
+            );
+          }
+        }
+      }
+      // Call this function again after a short delay to check for new images
+      setTimeout(checkForNewImages, 1000);
+    }
+  });
+}
+
+// Initialize the page by loading any previously added images from local storage
+$(document).ready(function() {
+  let addedFilenames = JSON.parse(localStorage.getItem("addedFilenames")) || [];
+  for (let i = 0; i < addedFilenames.length; i++) {
+    $("#images").prepend(
+      `<div class="image-container">
+        <img src="${addedFilenames[i]}" alt="Image">
+        <div class="image-info">
+          Image path: ${addedFilenames[i]}
+          <br>
+          Image name: ${addedFilenames[i]}
+          <br>
+          Image size: 200x200
+        </div>
+      </div>`
+    );
+  }
+
+  // Start checking for new images
+  checkForNewImages();
+});
+
+      
+      
+    </script>
+
+<script>
+
+</script>
+  </body>
+</html>
