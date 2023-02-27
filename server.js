@@ -18,18 +18,18 @@ client.setKey('029ef6787a90de4d03bc9cfe844bc78f51147b16c50387bc4377ab5645f045a9f
 
 const http = require('http');
 
-const hostname = 'jisrpharma';
+const hostname = 'localhost';
 const port = 8001;
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, World!\n');
-});
+// const server = http.createServer((req, res) => {
+//   res.statusCode = 200;
+//   res.setHeader('Content-Type', 'text/plain');
+//   res.end('Hello, World!\n');
+// });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+// server.listen(port, hostname, () => {
+//   console.log(`Server running at http://${hostname}:${port}/`);
+// });
 const ngrok = require('ngrok');
 
 
@@ -39,11 +39,26 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   res.header('Content-Security-Policy: none')
+//   // res.header("ngrok-skip-browser-warning","true");
+//   next();
+// });
+
+
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "https://8002-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   res.header("Content-Security-Policy", "none");
+//   next();
+// });
+
+
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "https://8002-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header('Content-Security-Policy: none')
-  // res.header("ngrok-skip-browser-warning","true");
   next();
 });
 
@@ -97,16 +112,16 @@ app.use(session({
 //   }
 // })();
 
-// app.listen(8002,() => {
-//   console.log(`Server running at http://localhost:${8002}`);
-// });
+app.listen(8003,() => {
+  console.log(`Server running at http://localhost:${8002}`);
+});
 
 app.post('/chifa', async (req, res, next) => {
   let fileName = req.body.fileName;
-  let dir = `src\\public\\Images\\${fileName}`;
+  let dir = `\\src\\public\\Images\\${fileName}`;
   let imageChifa = req.body.imageChifa;
   let imagePath = path.join(dir, `Chifa@${fileName}.jpg`);
-
+console.log(imagePath)
   req.session.fileName = fileName;
   req.session.dir = dir;
   req.session.imageChifa = imageChifa;
@@ -207,15 +222,15 @@ app.post('/ordonnance', async (req, res, next) => {
     });
 });
 
-const admin = require('firebase-admin');
+// const admin = require('firebase-admin');
 
-  // Initialize Firebase
-  const serviceAccount = require('C:\\Users\\MCS\\OneDrive\\Desktop\\Jisr pharmacy\\firstprojectt-2c1de-firebase-adminsdk-c2kai-5df1d0560e.json');
+//   // Initialize Firebase
+//   const serviceAccount = require('C:\\Users\\MCS\\OneDrive\\Desktop\\Jisr pharmacy\\firstprojectt-2c1de-firebase-adminsdk-c2kai-5df1d0560e.json');
   
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://firstprojectt-2c1de-default-rtdb.firebaseio.com'
-  });
+//   admin.initializeApp({
+//     credential: admin.credential.cert(serviceAccount),
+//     databaseURL: 'https://firstprojectt-2c1de-default-rtdb.firebaseio.com'
+//   });
   
 app.post('/Postaddr',async (req, res, next) => {
   let Adr = req.body.Adr;
@@ -241,21 +256,21 @@ app.post('/Postaddr',async (req, res, next) => {
   res.end(`lets send ${message.custom_payload.message}`);
   
 
-  // Store the message sent by the first Chatfuel chatbot in Firebase
-  admin.database().ref('messages').set({
-    message: message
-  });
+  // // Store the message sent by the first Chatfuel chatbot in Firebase
+  // admin.database().ref('messages').set({
+  //   message: message
+  // });
   
-  // Retrieve the stored message in your webhook
-  admin.database().ref('messages').once('value')
-    .then((snapshot) => {
-      const message = snapshot.val().message;
-      console.log(message);
-      // Use the message in your webhook logic to trigger the desired action
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  // // Retrieve the stored message in your webhook
+  // admin.database().ref('messages').once('value')
+  //   .then((snapshot) => {
+  //     const message = snapshot.val().message;
+  //     console.log(message);
+  //     // Use the message in your webhook logic to trigger the desired action
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
   
   // Define the URL for the receiving chatbot's JSON API
   const url = `https://api.chatfuel.com/bots/63f49b619557a962ef4bfc7b/users/${message.chatfuel_user_id}/send?chatfuel_token=${message.chatfuel_token}&chatfuel_block_id=${message.chatfuel_block_id}`;
@@ -307,41 +322,41 @@ request(options, (error, response, body) => {
 
 
 
-const destinationBotId = '63f49b619557a962ef4bfc7b';
+// const destinationBotId = '63f49b619557a962ef4bfc7b';
 
-const setOptions = {
-  // url: `https://api.chatfuel.com/bots/${destinationBotId}/users/${userId}`,
+// const setOptions = {
+//   // url: `https://api.chatfuel.com/bots/${destinationBotId}/users/${userId}`,
 
-url: 'https://api.chatfuel.com/bots/63c96ca2da47e24595aa18fa/users/6155861414436575/send', 
+// url: 'https://api.chatfuel.com/bots/63c96ca2da47e24595aa18fa/users/6155861414436575/send', 
 
-method: 'POST',
-json: true,
-headers: {
-  'Content-Type': 'application/json'
-},
-body: message
+// method: 'POST',
+// json: true,
+// headers: {
+//   'Content-Type': 'application/json'
+// },
+// body: message
 
-};
+// };
 
-request(setOptions, (error, response, body) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('Attributes set successfully');
-  }
-});
+// request(setOptions, (error, response, body) => {
+//   if (error) {
+//     console.error(error);
+//   } else {
+//     console.log('Attributes set successfully');
+//   }
+// });
 
 }
 )
 
 app.get('/pharma', function (req, res){   
 
-    const filePath = path.join(__dirname, "" ,"Pharmacywindow.html");
+    const filePath = path.join(__dirname, "" ,"home.html");
     res.sendFile(filePath);
     
 
   })
-console.log(sharedData)
+// console.log(sharedData)
   
 
   

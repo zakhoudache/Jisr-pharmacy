@@ -25,4 +25,4 @@ src\public\Images\Zaki\Ordonnance@Zaki20.jpg
 src\public\Images\Zaki\Ordonnance@Zaki21.jpg
 src\public\Images\Zaki\Ordonnance@Zaki22.jpg
 src\public\Images\Zaki\Ordonnance@Zaki23.jpg
-src\public\Images\Zaki\Ordonnance@Zaki24.jpg
+src\public\Images\Zaki\Ordonnance@Zaki24.jpg 

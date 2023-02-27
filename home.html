@@ -86,7 +86,7 @@ $(document).ready(function() {
     // $row.append($textC);
 
     // Add the links to the table
-    let linkUrlC = `src/Site1/Accueil.html?linkUrlC=\\${filenameC}`;
+    let linkUrlC = `/src/Site1/Accueil.html?linkUrlC=\\${filenameC}`;
     let $linkC_Chifa = $("<td></td>").html(`<a href="${linkUrlC}">Go to Page Accueil-C.html</a>`);
     $row.append($linkC_Chifa);
 
@@ -98,7 +98,6 @@ $(document).ready(function() {
     let linkUrl_C_O = `src/Site1/Accueil.html?linkUrlC=\\${filenameC}&linkUrlO=\\${filenameO}`;
     let $linkC_Chifa_Ord = $("<td></td>").html(`<a href="${linkUrl_C_O}">Go to Page Accueil-C-O.html</a>`);
     $row.append($linkC_Chifa_Ord);
-
     // Add the row to the table
     // $table.prepend($row);
   // }
@@ -109,8 +108,8 @@ $(document).ready(function() {
   // Append the table to the page
   // $("#table-container").append($table);
   function loadTextFile() {
-   let ajax1 = $.get("http://127.0.0.1:5500/ListFilename.txt");
-let ajax2 = $.get("http://127.0.0.1:5500/ListFilenameOrdonnance.txt");
+   let ajax1 = $.get("https://5501-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io/ListFilename.txt");
+let ajax2 = $.get("https://5501-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io/ListFilenameOrdonnance.txt");
 
 // let $table = $("<table></table>");
 
@@ -158,40 +157,7 @@ $.when(ajax1, ajax2).done(function(response1, response2) {
       imageOrder.push(filenameO[i]);
 
     }
-  //   localStorage.setItem("imageOrder", JSON.stringify(imageOrder));
-  // } else {
-  //   let imageOrder = JSON.parse(localStorage.getItem("imageOrder")) || [];
-  //   let $tableRows = $table.find("tr");
-  //   for (let i = 0; i < imageOrder.length; i += 2) {
-  //     let indexC = addedFilenamesC.indexOf(imageOrder[i]);
-  //     let indexO = addedFilenamesO.indexOf(imageOrder[i+1]);
-  //     if (indexC >= 0 && indexO >= 0) {
-  //       let $tableRow = $tableRows.eq(indexC);
-  //       let $textCell = $tableRow.find("td").eq(0);
-  //       let $linkCellChifa = $tableRow.find("td").eq(1).find("a");
-  //       let $linkCellOrdonnance = $tableRow.find("td").eq(2).find("a");
-  //       let $linkCellChifa_Ord = $tableRow.find("td").eq(3).find("a");
-  //       let linkUrlC = `\\src\\Site1\\Accueil.html" + "?linkUrlC=" +${'\\'+imageOrder[i]}`;        console.log("io "+ '\\'+imageOrder[i]);
-
-
-
-  //       let linkUrlO = `\\src\\Site1\\Accueil.html" + "?linkUrlO=" +${'\\'+imageOrder[i+1]}`;
-
-
-  //       let linkUrl_C_O = `\\src\\Site1\\Accueil.html?linkUrlC=${imageOrder[i]}&linkUrlO=${imageOrder[i+1]}`;
-  //       $textCell.text(imageOrder[i] + imageOrder[i+1]);
-  //       $linkCellChifa.attr("href", linkUrlC);
-  //       $linkCellOrdonnance.attr("href", linkUrlO);
-  //       $linkCellChifa_Ord.attr("href", linkUrl_C_O);
-  //       $tableRow.appendTo($table.find("tbody"));
-  //     } else {
-  //       // RemoII²ve the missing entry from the image order list
-  //       imageOrder.splice(i, 2);
-  //       localStorage.setItem("imageOrder", JSON.stringify(imageOrder));
-  //     }
-
-  //   }
-  // }
+  
   }
 });
 
