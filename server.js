@@ -1,15 +1,35 @@
 const express = require("express");
-const hostname = "127.0.0.1";
+// const hostname = "127.0.0.1";
 const session = require('express-session');
 const app = express();
 const path = require("path");
 const fs = require("fs");
 const axios = require("axios");
 const { spawn } = require('child_process');
+// const {client} = new Client();
 
-let sharedData;
 
+const appwrite = require('node-appwrite');
+const client = new appwrite.Client();
 
+client.setEndpoint('https://jisrpharma/v1') ;
+client.setProject('63fce2a7840fdaf53786') 
+client.setKey('029ef6787a90de4d03bc9cfe844bc78f51147b16c50387bc4377ab5645f045a9f1f14dcaa5e33dcb9d04d91648cc4cbe092ffb869a6a23f89f1e9a0a0b2b5b5c41bc0f85deba4134ddb7a83dc2072e3777a5b76a6bfeea34fab81d0ad647c9c73342ff3f635eafedc9df2f15338e3609ec20a6bf58e584cae442788508bffc1a');                // Your project ID
+
+const http = require('http');
+
+const hostname = 'jisrpharma';
+const port = 8001;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello, World!\n');
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
 const ngrok = require('ngrok');
 
 
@@ -77,9 +97,9 @@ app.use(session({
 //   }
 // })();
 
-app.listen(8002,() => {
-  console.log(`Server running at http://localhost:${8002}`);
-});
+// app.listen(8002,() => {
+//   console.log(`Server running at http://localhost:${8002}`);
+// });
 
 app.post('/chifa', async (req, res, next) => {
   let fileName = req.body.fileName;

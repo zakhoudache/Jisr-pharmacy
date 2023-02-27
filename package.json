@@ -25,6 +25,7 @@
     "fs": "^0.0.1-security",
     "localtunnel": "^2.0.2",
     "ngrok": "^4.3.3",
+    "node-appwrite": "^8.2.0",
     "path": "^0.12.7",
     "request": "^2.88.2",
     "socket.io": "^4.5.4",
