@@ -292,7 +292,7 @@ request(options, (error, response, body) => {
 
 app.get('/pharma', function (req, res){   
 
-    const filePath = path.join(__dirname, "" ,"home.html");
+    const filePath = path.join(__dirname, "" ,"hm.html");
     res.sendFile(filePath);
     
 
