@@ -42,7 +42,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://8005-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io");
+  res.header("Access-Control-Allow-Origin", `https://${process.env.PORT}-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io`);
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -53,11 +53,11 @@ app.use(session({
   saveUninitialized: true
 }));
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("fffffffffffffffff")
 })
 
-app.listen(process.env.PORT,() => {
+app.listen(process.env.PORT||8005,() => {
   console.log(`Server running at http://localhost:${8005}`);
 });
 
