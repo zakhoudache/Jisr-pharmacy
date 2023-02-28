@@ -12,26 +12,24 @@ const { spawn } = require('child_process');
 const appwrite = require('node-appwrite');
 const client = new appwrite.Client();
 
-client.setEndpoint('https://jisrpharma/v1') ;
+client.setEndpoint('https://localhost/v1') ;
 client.setProject('63fce2a7840fdaf53786') 
 client.setKey('029ef6787a90de4d03bc9cfe844bc78f51147b16c50387bc4377ab5645f045a9f1f14dcaa5e33dcb9d04d91648cc4cbe092ffb869a6a23f89f1e9a0a0b2b5b5c41bc0f85deba4134ddb7a83dc2072e3777a5b76a6bfeea34fab81d0ad647c9c73342ff3f635eafedc9df2f15338e3609ec20a6bf58e584cae442788508bffc1a');                // Your project ID
 
-const http = require('http');
 
-const hostname = 'localhost';
-const port = 8001;
+// const {Appwrite} = require('appwrite');
 
-// const server = http.createServer((req, res) => {
-//   res.statusCode = 200;
-//   res.setHeader('Content-Type', 'text/plain');
-//   res.end('Hello, World!\n');
+// const appwrite = new Appwrite();
+
+// appwrite.setEndpoint('https://localhost/v1');
+// appwrite.setProject('63fce2a7840fdaf53786');
+// appwrite.setKey('029ef6787a90de4d03bc9cfe844bc78f51147b16c50387bc4377ab5645f045a9f1f14dcaa5e33dcb9d04d91648cc4cbe092ffb869a6a23f89f1e9a0a0b2b5b5c41bc0f85deba4134ddb7a83dc2072e3777a5b76a6bfeea34fab81d0ad647c9c73342ff3f635eafedc9df2f15338e3609ec20a6bf58e584cae442788508bffc1a');
+
+// appwrite.launch().then(() => {
+//   console.log('Appwrite server started');
+// }).catch((error) => {
+//   console.error('Failed to start Appwrite server', error);
 // });
-
-// server.listen(port, hostname, () => {
-//   console.log(`Server running at http://${hostname}:${port}/`);
-// });
-const ngrok = require('ngrok');
-
 
 
 app.set('view engine', 'ejs');
@@ -39,25 +37,10 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   res.header('Content-Security-Policy: none')
-//   // res.header("ngrok-skip-browser-warning","true");
-//   next();
-// });
-
-
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "https://8002-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   res.header("Content-Security-Policy", "none");
-//   next();
-// });
 
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://8002-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io");
+  res.header("Access-Control-Allow-Origin", "https://8003-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -69,48 +52,6 @@ app.use(session({
 }));
 
 
-// ngrok.connect({ addr: 8002 }, (err, url) => {
-//   if (err) {
-//     console.error('Error starting ngrok', err);
-//     return;
-//   }
-//   console.log(`ngrok tunnel is active at ${url}`);
-// });
-
-
-
-// ngrok.connect({
-//   addr: 8002,
-//   authtoken: '2M5XgItMGFOxsWVsakdcSCkfRBl_6LuyjHVb6jfgv8hohCv72',
-// }).then(url => {
-//   console.log(`Tunnel is open at ${url}`);
-// }).catch(error => {
-//   console.error('Error opening tunnel:', error);
-// });
-
-
-
-
-// (async function() {
-//   try {
-//     // Start an SSH tunnel using ngrok
-//     const url = await ngrok.connect({
-//       proto: 'tcp',
-//       addr: 443,
-//       authtoken: '2M5XgItMGFOxsWVsakdcSCkfRBl_6LuyjHVb6jfgv8hohCv72',
-//     });
-//     console.log(`SSH tunnel created at: ${url}`);
-
-//     // Spawn a new ssh process using the ngrok URL
-//     const sshProcess = spawn('ssh', ['-o', 'StrictHostKeyChecking=no', '-J', url, 'MCS@localhost']);
-
-//     sshProcess.stdout.on('data', data => console.log(data.toString()));
-//     sshProcess.stderr.on('data', data => console.error(data.toString()));
-//     sshProcess.on('exit', code => console.log(`SSH process exited with code ${code}`));
-//   } catch (error) {
-//     console.error('Failed to create SSH tunnel:', error);
-//   }
-// })();
 
 app.listen(8003,() => {
   console.log(`Server running at http://localhost:${8002}`);
@@ -222,7 +163,7 @@ app.post('/ordonnance', async (req, res, next) => {
     });
 });
 
-// const admin = require('firebase-admin');
+
 
 //   // Initialize Firebase
 //   const serviceAccount = require('C:\\Users\\MCS\\OneDrive\\Desktop\\Jisr pharmacy\\firstprojectt-2c1de-firebase-adminsdk-c2kai-5df1d0560e.json');
