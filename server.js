@@ -7,6 +7,7 @@ const fs = require("fs");
 const axios = require("axios");
 const { spawn } = require('child_process');
 // const {client} = new Client();
+const port = process.env.PORT || 8005;
 
 
 const appwrite = require('node-appwrite');
@@ -56,7 +57,7 @@ app.use("/", (req, res) => {
   res.send("fffffffffffffffff")
 })
 
-app.listen(8005,() => {
+app.listen(process.env.PORT,() => {
   console.log(`Server running at http://localhost:${8005}`);
 });
 
