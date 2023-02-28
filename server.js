@@ -31,16 +31,17 @@ client.setKey('029ef6787a90de4d03bc9cfe844bc78f51147b16c50387bc4377ab5645f045a9f
 //   console.error('Failed to start Appwrite server', error);
 // });
 
+app.use(express.static(path.join(__dirname, 'src/public/static')));
 
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+// app.use(express.static('src'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://8003-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io");
+  res.header("Access-Control-Allow-Origin", "https://8005-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -51,10 +52,12 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use("/", (req, res) => {
+  res.send("fffffffffffffffff")
+})
 
-
-app.listen(8003,() => {
-  console.log(`Server running at http://localhost:${8002}`);
+app.listen(8005,() => {
+  console.log(`Server running at http://localhost:${8005}`);
 });
 
 app.post('/chifa', async (req, res, next) => {
@@ -290,9 +293,10 @@ request(options, (error, response, body) => {
 }
 )
 
-app.get('/pharma', function (req, res){   
+app.get('/src/public/static/pharma', function (req, res){   
 
-    const filePath = path.join(__dirname, "" ,"hm.html");
+  const filePath = path.join(__dirname, 'src/public/static', 'home.html');
+  console.log(filePath);
     res.sendFile(filePath);
     
 
