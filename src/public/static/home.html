@@ -178,27 +178,27 @@ loadTextFile();
   
       
 // Initialize the page by loading any previously added images from local storage
-$(document).ready(function() {
-  const addedFilenamesC = JSON.parse(localStorage.getItem("addedFilenamesC")) || [];
-  const addedFilenamesO = JSON.parse(localStorage.getItem("addedFilenamesO")) || [];
-  const tableData = JSON.parse(localStorage.getItem("tableData"));
+// $(document).ready(function() {
+//   const addedFilenamesC = JSON.parse(localStorage.getItem("addedFilenamesC")) || [];
+//   const addedFilenamesO = JSON.parse(localStorage.getItem("addedFilenamesO")) || [];
+//   const tableData = JSON.parse(localStorage.getItem("tableData"));
 
-  const $table = $("<table></table>");
-  for (let i = 0; i < addedFilenamesC.length; i++) {
-    const rowDataC = addedFilenamesC[i];
-    const rowDataO = addedFilenamesO[i+1];
-    const $tableRow = $("<tr></tr>");
-    const $textCell = $("<td></td>").text(rowDataC + rowDataO);
-    const $linkCellChifa = $("<td></td>").html(`<a href="src/Site1/Accueil.html?id=${rowDataC}">Go to Page Accueil-C.html</a>`);
-    const $linkCellOrdonnance = $("<td></td>").html(`<a href="src/Site1/Accueil.html?id=${rowDataO}">Go to Page Accueil-O.html</a>`);
-    const $linkCellChifa_Ord = $("<td></td>").html(`<a href="src/Site1/Accueil.html?id=${rowDataO}-${rowDataC}">Go to Page Accueil-C-O.html</a>`);
-    // $tableRow.prepend($textCell, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord);
-    $table.append($tableRow);
+//   const $table = $("<table></table>");
+//   for (let i = 0; i < addedFilenamesC.length; i++) {
+//     const rowDataC = addedFilenamesC[i];
+//     const rowDataO = addedFilenamesO[i+1];
+//     const $tableRow = $("<tr></tr>");
+//     const $textCell = $("<td></td>").text(rowDataC + rowDataO);
+//     const $linkCellChifa = $("<td></td>").html(`<a href="src/Site1/Accueil.html?id=${rowDataC}">Go to Page Accueil-C.html</a>`);
+//     const $linkCellOrdonnance = $("<td></td>").html(`<a href="src/Site1/Accueil.html?id=${rowDataO}">Go to Page Accueil-O.html</a>`);
+//     const $linkCellChifa_Ord = $("<td></td>").html(`<a href="src/Site1/Accueil.html?id=${rowDataO}-${rowDataC}">Go to Page Accueil-C-O.html</a>`);
+//     // $tableRow.prepend($textCell, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord);
+//     $table.append($tableRow);
 
 
-  }
-  $("body").append($table);
-});
+//   }
+//   $("body").append($table);
+// });
 
 
 // let $table = $("<table></table>");
