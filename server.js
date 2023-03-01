@@ -268,30 +268,6 @@ request(options, (error, response, body) => {
 
 
 
-// const destinationBotId = '63f49b619557a962ef4bfc7b';
-
-// const setOptions = {
-//   // url: `https://api.chatfuel.com/bots/${destinationBotId}/users/${userId}`,
-
-// url: 'https://api.chatfuel.com/bots/63c96ca2da47e24595aa18fa/users/6155861414436575/send', 
-
-// method: 'POST',
-// json: true,
-// headers: {
-//   'Content-Type': 'application/json'
-// },
-// body: message
-
-// };
-
-// request(setOptions, (error, response, body) => {
-//   if (error) {
-//     console.error(error);
-//   } else {
-//     console.log('Attributes set successfully');
-//   }
-// });
-
 }
 )
 
