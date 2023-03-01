@@ -279,46 +279,48 @@ request(options, (error, response, body) => {
   
 
 // let $table = $("<table></table>");
-function createTableRow(filenameC,filenameO, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord) {
-
-
-  
-
-  // Create the table row
-  let $row = $("<tr></tr>");
-
-  let $filenameCCell_OCell = $("<td></td>").text(filenameC+filenameO);
-  $row.append($filenameCCell_OCell);
-  // let filenameO = $("<td></td>");;
-  // Add the filename to the table
-  // let $textC = $("<td></td>").text($textCell);
-  // $row.append($textC);
-
-  // Add the links to the table
-  let linkUrlC = `/src/Site1/Accueil.html?linkUrlC=\\${filenameC}`;
-  let $linkC_Chifa = $("<td></td>").html(`<a href="${linkUrlC}">Go to Page Accueil-C.html</a>`);
-  $row.append($linkC_Chifa);
-
-  let linkUrlO = `/src/Site1/Accueil.html?linkUrlO=\\${filenameO}`;
-  let $linkC_Ordonnance = $("<td></td>").html(`<a href="${linkUrlO}">Go to Page Accueil-O.html</a>`);
-  $row.append($linkC_Ordonnance);
-  // let linkUrl_C_O = `\\src\\Site1\\Accueil.html?linkUrlC=${imageOrder[i]}&linkUrlO=${imageOrder[i+1]}`;
-
-  let linkUrl_C_O = `src/Site1/Accueil.html?linkUrlC=\\${filenameC}&linkUrlO=\\${filenameO}`;
-  let $linkC_Chifa_Ord = $("<td></td>").html(`<a href="${linkUrl_C_O}">Go to Page Accueil-C-O.html</a>`);
-  $row.append($linkC_Chifa_Ord);
-  // Add the row to the table
-  // $table.prepend($row);
-// }
-
-return $row;
-
-}
 
 
 
 app.get('/pharma', function(req, res) {
 
+
+  function createTableRow(filenameC,filenameO, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord) {
+
+
+  
+
+    // Create the table row
+    let $row = $("<tr></tr>");
+  
+    let $filenameCCell_OCell = $("<td></td>").text(filenameC+filenameO);
+    $row.append($filenameCCell_OCell);
+    // let filenameO = $("<td></td>");;
+    // Add the filename to the table
+    // let $textC = $("<td></td>").text($textCell);
+    // $row.append($textC);
+  
+    // Add the links to the table
+    let linkUrlC = `/src/Site1/Accueil.html?linkUrlC=\\${filenameC}`;
+    let $linkC_Chifa = $("<td></td>").html(`<a href="${linkUrlC}">Go to Page Accueil-C.html</a>`);
+    $row.append($linkC_Chifa);
+  
+    let linkUrlO = `/src/Site1/Accueil.html?linkUrlO=\\${filenameO}`;
+    let $linkC_Ordonnance = $("<td></td>").html(`<a href="${linkUrlO}">Go to Page Accueil-O.html</a>`);
+    $row.append($linkC_Ordonnance);
+    // let linkUrl_C_O = `\\src\\Site1\\Accueil.html?linkUrlC=${imageOrder[i]}&linkUrlO=${imageOrder[i+1]}`;
+  
+    let linkUrl_C_O = `src/Site1/Accueil.html?linkUrlC=\\${filenameC}&linkUrlO=\\${filenameO}`;
+    let $linkC_Chifa_Ord = $("<td></td>").html(`<a href="${linkUrl_C_O}">Go to Page Accueil-C-O.html</a>`);
+    $row.append($linkC_Chifa_Ord);
+    // Add the row to the table
+    // $table.prepend($row);
+  // }
+  
+  return $row;
+  
+  }
+  
 
   loadTextFile(function(err, $table) {
     if (err) {
