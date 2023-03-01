@@ -97,7 +97,8 @@ console.log(imagePath)
   }
 
   const writeToFile = (text) => {
-    fs.appendFile('ListFilename.txt', text + '\n', (err) => {
+    
+    fs.appendFile('src/public/static/ListFilename.txt', text + '\n', (err) => {
       if (err) throw err;
       console.log(`I'm ${req.session.fileName} My path's text was appended to ListFilename.txt ! and here it is : ${text}`);
     });
@@ -150,7 +151,7 @@ console.log(imagePath, dir,`Ordonnance@${fileName}.jpg`)
   }
 
   const writeToFile = (text) => {
-    fs.appendFile('ListFilenameOrdonnance.txt', text + '\n', (err) => {
+    fs.appendFile('src/public/static/ListFilenameOrdonnance.txt', text + '\n', (err) => {
       if (err) throw err;
       console.log(`I'm ${req.session.fileName} My path's text was appended to ListFilenameOrdonnance.txt ! and here it is : ${text}`);
       // console.log('The text was appended to file!');
