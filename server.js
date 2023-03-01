@@ -64,7 +64,7 @@ app.listen(process.env.PORT||8005,() => {
 
 app.post('/chifa', async (req, res, next) => {
   let fileName = req.body.fileName;
-  let dir = `\\src\\public\\Images\\${fileName}`;
+  let dir = `\\src\\public\\Images\\${fileName}\\`;
   let imageChifa = req.body.imageChifa;
   let imagePath = path.join(dir, `Chifa@${fileName}.jpg`);
 console.log(imagePath)

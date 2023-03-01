@@ -62,13 +62,6 @@ $(document).ready(function() {
   function createTableRow(filenameC,filenameO, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord) {
 
 
-  // Load any previously added images from local storage
-  // let addedFilenamesC = JSON.parse(localStorage.getItem("addedFilenamesC")) || [];
-  // let addedFilenamesO = JSON.parse(localStorage.getItem("addedFilenamesO")) || [];
-  // let imageOrder = JSON.parse(localStorage.getItem("imageOrder")) || [];
-
-  // Iterate through each image and add it to the table
-  // for (let i = 0; i < addedFilenamesC.length; i++) {
     
 
     // Create the table row
@@ -108,8 +101,12 @@ $(document).ready(function() {
 // let ajax2 = $.get("https://8005-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io/ListFilenameOrdonnance.txt");
    let ajax1 = $.get("https://jisr-pharmacy.up.railway.app/ListFilename.txt");
 let ajax2 = $.get("https://jisr-pharmacy.up.railway.app/ListFilenameOrdonnance.txt");
+
+// let ajax1 = $.get("https://jisr-pharmacy.up.railway.app/src/public/static/ListFilename.txt");
+// let ajax2 = $.get("https://jisr-pharmacy.up.railway.app/src/public/static/ListFilenameOrdonnance.txt");
 // /workspace/Jisr-pharmacy/ListFilename.txt
 // ListFilename.txt
+// src/public/static/ListFilename.txt
 // src/public/Static/ListFilename.txt
 // let $table = $("<table></table>");
 
