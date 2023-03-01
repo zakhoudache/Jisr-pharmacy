@@ -32,7 +32,7 @@ client.setKey('029ef6787a90de4d03bc9cfe844bc78f51147b16c50387bc4377ab5645f045a9f
 //   console.error('Failed to start Appwrite server', error);
 // });
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '')));
 
 app.set('view engine', 'ejs');
 // app.use(express.static('src'));
@@ -296,7 +296,7 @@ request(options, (error, response, body) => {
 
 app.get('/pharma', function (req, res){   
 
-  const filePath = path.join(__dirname, 'public', 'home.html');
+  const filePath = path.join(__dirname, '', 'home.html');
   console.log(filePath);
     res.sendFile(filePath);
     

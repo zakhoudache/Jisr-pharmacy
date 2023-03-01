@@ -103,31 +103,35 @@ $(document).ready(function() {
   }
   // Append the table to the page
   // $("#table-container").append($table);
+
+
+
+
+
+
+
   function loadTextFile() {
-   let ajax1 = $.get("https://8005-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io/ListFilename.txt");
-let ajax2 = $.get("https://8005-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io/ListFilenameOrdonnance.txt");
+    const promise1 = fetch("https://5501-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io/ListFilename.txt")
+    .then(response => response.text());
+  const promise2 = fetch("https://5501-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io/ListFilenameOrdonnance.txt")
+    .then(response => response.text());
 
-// let $table = $("<table></table>");
+  Promise.all([promise1, promise2])
+    .then(data => {
+      // data is an array containing the text data of both files
+      console.log(data[0]); // text data of ListFilename.txt
+      console.log(data[1]); // text data of ListFilenameOrdonnance.txt
+   
 
-// Use .when() to wait for both AJAX requests to complete
-$.when(ajax1, ajax2).done(function(response1, response2) {
-  // let addedFilenamesC = JSON.parse(localStorage.getItem("addedFilenamesC")) || [];
-  // let addedFilenamesO = JSON.parse(localStorage.getItem("addedFilenamesO")) || [];
-
+  
   // Get the last line from each response
-  let lastLineC = response1[0].split("\n");
-  let lastLineO = response2[0].split("\n");
+  let lastLineC = data[0].split("\n");
+  let lastLineO = data[1].split("\n");
   console.log(lastLineC)
   for  (let i = 0; i <lastLineC.length; i++) {
     // Add the last image to the added filenames list
     const filenameC = lastLineC[i];
     const filenameO = lastLineO[i];
-
-    // addedFilenamesC.push(lastLineC);
-    // addedFilenamesO.push(lastLineO);
-
-    // localStorage.setItem("addedFilenamesC", JSON.stringify(addedFilenamesC));
-    // localStorage.setItem("addedFilenamesO", JSON.stringify(addedFilenamesO));
 
     let $tableRow = $("<tr></tr>");
     let $textCell = $("<td></td>").text(filenameC + filenameO);
@@ -155,7 +159,8 @@ $.when(ajax1, ajax2).done(function(response1, response2) {
     }
   
   }
-});
+})
+.catch(error => console.error(error));
 
 $table.append("<thead><tr><th>Image Paths</th><th>Go Chifa</th><th>Go Ordonnance</th><th>Go Chifa-Ordonnance</th></tr></thead>");
 $table.append("<tbody></tbody>");
