@@ -32,7 +32,7 @@ client.setKey('029ef6787a90de4d03bc9cfe844bc78f51147b16c50387bc4377ab5645f045a9f
 //   console.error('Failed to start Appwrite server', error);
 // });
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '')));
 
 app.set('view engine', 'ejs');
 // app.use(express.static('public'));
@@ -43,7 +43,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(function(req, res, next) {
   // res.header("Access-Control-Allow-Origin", `https://${process.env.PORT}-zakhoudache-jisrpharmac-q94cj5igwn9.ws-eu88.gitpod.io`);
-  res.header("Access-Control-Allow-Origin", `https://jisr-pharmacy.up.railway.app`);
+  res.header("Access-Control-Allow-Origin", "https://jisr-pharmacy.up.railway.app");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
