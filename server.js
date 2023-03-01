@@ -97,7 +97,7 @@ console.log(imagePath)
   }
 
   const writeToFile = (text) => {
-    fs.appendFile('ListFilename.txt', text + ' \n', (err) => {
+    fs.appendFile('ListFilename.txt', text + '\n', (err) => {
       if (err) throw err;
       console.log(`I'm ${req.session.fileName} My path's text was appended to ListFilename.txt ! and here it is : ${text}`);
     });
