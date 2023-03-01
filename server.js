@@ -315,9 +315,9 @@ app.get('/pharma', function(req, res) {
     $row.append($linkC_Chifa_Ord);
     // Add the row to the table
     // $table.prepend($row);
-  // }
+      // }
   
-  return $row;
+    return $row;
   
   }
   
@@ -329,7 +329,7 @@ app.get('/pharma', function(req, res) {
     }
     res.send($table);
   });
-});
+
 
 function loadTextFile(callback) {
   // your existing code here
@@ -365,7 +365,7 @@ function loadTextFile(callback) {
   
       let $linkCellChifa_Ord = $("<td></td>").html(`<a href="${linkUrl_C_O}">Go to Page Accueil-C-O.html</a>`);
       $row =createTableRow(filenameC,filenameO, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord);
-      $tableRow.createTableRow($textCell, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord);
+      // $tableRow.createTableRow($textCell, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord);
       // $table.find("tbody").prepend($row);
       $table.find("tbody").prepend($row);
   
@@ -434,7 +434,7 @@ function loadTextFile(callback) {
     <title>List of filenames</title>
   </head>
   <body>
-    ${$table}
+    
   </body>
 </html>`;
     // const filePath = path.join(__dirname, 'src/public/static', 'home.html');
@@ -442,8 +442,9 @@ function loadTextFile(callback) {
     //   res.send(html);
   
   // instead of appending the table to the body, pass it to the callback
-  callback(null,$table);
+  callback(null,html);
   }
+});
 
   
   const request = require('request');
