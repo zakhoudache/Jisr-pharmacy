@@ -147,10 +147,12 @@ console.log(imagePath, dir,`Ordonnance@${fileName}.jpg`)
   let counter = 0;
   while (fs.existsSync(imagePath)) {
     counter += 1;
+    // const filePath = path.join(__dirname, 'src/public/static');
     imagePath = path.join(dir, `Ordonnance@${fileName}${counter}.jpg`);
   }
 
   const writeToFile = (text) => {
+    // const filePath = path.join(__dirname, 'src/public/static', 'home.html');
     fs.appendFile('src/public/static/ListFilenameOrdonnance.txt', text + '\n', (err) => {
       if (err) throw err;
       console.log(`I'm ${req.session.fileName} My path's text was appended to ListFilenameOrdonnance.txt ! and here it is : ${text}`);
