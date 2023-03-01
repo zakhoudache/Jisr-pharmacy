@@ -274,16 +274,174 @@ request(options, (error, response, body) => {
 }
 )
 
-app.get('/pharma', function (req, res){   
 
-  const filePath = path.join(__dirname, 'src/public/static', 'home.html');
-  console.log(filePath);
-    res.sendFile(filePath);
-    
-
-  })
 // console.log(sharedData)
   
+
+// let $table = $("<table></table>");
+function createTableRow(filenameC,filenameO, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord) {
+
+
+  
+
+  // Create the table row
+  let $row = $("<tr></tr>");
+
+  let $filenameCCell_OCell = $("<td></td>").text(filenameC+filenameO);
+  $row.append($filenameCCell_OCell);
+  // let filenameO = $("<td></td>");;
+  // Add the filename to the table
+  // let $textC = $("<td></td>").text($textCell);
+  // $row.append($textC);
+
+  // Add the links to the table
+  let linkUrlC = `/src/Site1/Accueil.html?linkUrlC=\\${filenameC}`;
+  let $linkC_Chifa = $("<td></td>").html(`<a href="${linkUrlC}">Go to Page Accueil-C.html</a>`);
+  $row.append($linkC_Chifa);
+
+  let linkUrlO = `/src/Site1/Accueil.html?linkUrlO=\\${filenameO}`;
+  let $linkC_Ordonnance = $("<td></td>").html(`<a href="${linkUrlO}">Go to Page Accueil-O.html</a>`);
+  $row.append($linkC_Ordonnance);
+  // let linkUrl_C_O = `\\src\\Site1\\Accueil.html?linkUrlC=${imageOrder[i]}&linkUrlO=${imageOrder[i+1]}`;
+
+  let linkUrl_C_O = `src/Site1/Accueil.html?linkUrlC=\\${filenameC}&linkUrlO=\\${filenameO}`;
+  let $linkC_Chifa_Ord = $("<td></td>").html(`<a href="${linkUrl_C_O}">Go to Page Accueil-C-O.html</a>`);
+  $row.append($linkC_Chifa_Ord);
+  // Add the row to the table
+  // $table.prepend($row);
+// }
+
+return $row;
+
+}
+
+
+
+app.get('/pharma', function(req, res) {
+
+
+  loadTextFile(function(err, $table) {
+    if (err) {
+      console.error(err);
+      return res.sendStatus(500);
+    }
+    res.send($table);
+  });
+});
+
+function loadTextFile(callback) {
+  // your existing code here
+  // ...
+  
+  let ajax1 = $.get("https://jisr-pharmacy.up.railway.app/ListFilename.txt");
+  let ajax2 = $.get("https://jisr-pharmacy.up.railway.app/ListFilenameOrdonnance.txt");
+
+  
+  // Use .when() to wait for both AJAX requests to complete
+  $.when(ajax1, ajax2).done(function(response1, response2) {
+        
+    // Get the last line from each response
+    let lastLineC = response1[0].split("\n");
+    let lastLineO = response2[0].split("\n");
+    console.log(lastLineC)
+    for  (let i = 0; i <lastLineC.length; i++) {
+      // Add the last image to the added filenames list
+      const filenameC = lastLineC[i];
+      const filenameO = lastLineO[i];
+  console.log(filenameC);
+  console.log(filenameO);
+    
+      let $tableRow = $("<tr></tr>");
+      let $textCell = $("<td></td>").text(filenameC + filenameO);
+      let linkUrlC = `src/Site1/Accueil.html?linkUrlC=${filenameC}`;
+      let $linkCellChifa = $("<td></td>").html(`<a href="${linkUrlC}">Go to Page Accueil-C.html</a>`);
+      let linkUrlO = `src/Site1/Accueil.html?linkUrlO=${filenameO}`;
+      let $linkCellOrdonnance = $("<td></td>").html(`<a href="${linkUrlO}">Go to Page Accueil-O.html</a>`);
+      let linkUrl_C_O = `src/Site1/Accueil.html?linkUrlC=${filenameC}&linkUrlO=${filenameO}`;
+  
+      
+  
+      let $linkCellChifa_Ord = $("<td></td>").html(`<a href="${linkUrl_C_O}">Go to Page Accueil-C-O.html</a>`);
+      $row =createTableRow(filenameC,filenameO, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord);
+      $tableRow.createTableRow($textCell, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord);
+      $table.find("tbody").prepend($row);
+      $table.find("tbody").prepend($row);
+  
+  
+      // Store the updated list of added filenames and image order in local storage
+      let imageOrder = [];
+      for (let i = 0; i < filenameC.length; i++) {
+        imageOrder.push(filenameC[i]);
+        imageOrder.push(filenameO[i]);
+  
+      }
+    
+    }
+  });
+  
+  $table.append("<thead><tr><th>Image Paths</th><th>Go Chifa</th><th>Go Ordonnance</th><th>Go Chifa-Ordonnance</th></tr></thead>");
+  $table.append("<tbody></tbody>");
+  // $("body").append($table);
+  
+  // let html =``
+  
+
+  let html = `<html>
+  <head>
+  <style>
+  #table-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: sans-serif;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  thead tr {
+    background-color: #1abc9c;
+    color: #fff;
+    text-align: left;
+  }
+  
+  th,
+  td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #1abc9c;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  </style>
+
+    <title>List of filenames</title>
+  </head>
+  <body>
+    ${$table}
+  </body>
+</html>`;
+    // const filePath = path.join(__dirname, 'src/public/static', 'home.html');
+    // console.log(filePath);
+    //   res.send(html);
+  
+  // instead of appending the table to the body, pass it to the callback
+  callback(null,html);
+  }
 
   
   const request = require('request');
