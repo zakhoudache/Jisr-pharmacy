@@ -120,7 +120,7 @@ app.post('/ordonnance', async (req, res, next) => {
   let dir = `src\\public\\Images\\${fileName}`;
   let imageOrdonnance = req.body.imageOrdonnance;
   let imagePath = path.join(dir, `Ordonnance@${fileName}.jpg`);
-
+console.log(imagePath, dir,`Ordonnance@${fileName}.jpg`)
   req.session.fileName = fileName;
   req.session.dir = dir;
   req.session.imageOrdonnance = imageOrdonnance;
