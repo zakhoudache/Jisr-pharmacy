@@ -283,55 +283,64 @@ request(options, (error, response, body) => {
 
 
 app.get('/pharma', function(req, res) {
-
-
-  function createTableRow(filenameC,filenameO, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord) {
-
-
-  
-
-    // Create the table row
-    let $row = $("<tr></tr>");
-  
-    let $filenameCCell_OCell = $("<td></td>").text(filenameC+filenameO);
-    $row.append($filenameCCell_OCell);
-    // let filenameO = $("<td></td>");;
-    // Add the filename to the table
-    // let $textC = $("<td></td>").text($textCell);
-    // $row.append($textC);
-  
-    // Add the links to the table
-    let linkUrlC = `/src/Site1/Accueil.html?linkUrlC=\\${filenameC}`;
-    let $linkC_Chifa = $("<td></td>").html(`<a href="${linkUrlC}">Go to Page Accueil-C.html</a>`);
-    $row.append($linkC_Chifa);
-  
-    let linkUrlO = `/src/Site1/Accueil.html?linkUrlO=\\${filenameO}`;
-    let $linkC_Ordonnance = $("<td></td>").html(`<a href="${linkUrlO}">Go to Page Accueil-O.html</a>`);
-    $row.append($linkC_Ordonnance);
-    // let linkUrl_C_O = `\\src\\Site1\\Accueil.html?linkUrlC=${imageOrder[i]}&linkUrlO=${imageOrder[i+1]}`;
-  
-    let linkUrl_C_O = `src/Site1/Accueil.html?linkUrlC=\\${filenameC}&linkUrlO=\\${filenameO}`;
-    let $linkC_Chifa_Ord = $("<td></td>").html(`<a href="${linkUrl_C_O}">Go to Page Accueil-C-O.html</a>`);
-    $row.append($linkC_Chifa_Ord);
-    // Add the row to the table
-    // $table.prepend($row);
-      // }
-  
-    return $row;
-  
-  }
-  
-
-  loadTextFile(function(err, $table) {
+  loadTextFile(function(err, html) {
     if (err) {
-      console.error(err);
-      return res.sendStatus(500);
+      // Handle any errors that occur in the loadTextFile function
+      return res.status(500).send(err.message);
     }
-    res.send($table);
+    
+    // Call createTableRow function passing the html as an argument
+    let tableRow = createTableRow(html);
+    
+    // Send the resulting HTML to the client
+    res.send(tableRow);
   });
+});
+  
+
+// app.get('/pharma', function(req, res) {
 
 
-function loadTextFile(callback) {
+//   function createTableRow(filenameC,filenameO, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord) {
+
+
+  
+
+//   }
+  
+
+//   loadTextFile(function(err, $table) {
+//     if (err) {
+//       console.error(err);
+//       return res.sendStatus(500);
+//     }
+//     res.send($table);
+//   });
+
+
+// function loadTextFile(callback) {
+// });
+
+  
+
+
+
+
+// app.get('/pharma', function(req, res) {
+//   // Call the loadtxtfile function to load data
+//   var data = loadTextFile();
+  
+//   // Call the createTableRow function to create table rows
+//   var tableRows = createTableRow(filenameC,filenameO);
+  
+//   // Send the table rows as response
+//   res.send(tableRows);
+// });
+
+
+function loadTextFile() {
+  // Implementation of loadtxtfile function goes here
+
   // your existing code here
   // ...
   
@@ -383,10 +392,6 @@ function loadTextFile(callback) {
   
   $table.append("<thead><tr><th>Image Paths</th><th>Go Chifa</th><th>Go Ordonnance</th><th>Go Chifa-Ordonnance</th></tr></thead>");
   $table.append("<tbody></tbody>");
-  // $("body").append($table);
-  
-  // let html =``
-  
 
   let html = `<html>
   <head>
@@ -437,16 +442,46 @@ function loadTextFile(callback) {
     
   </body>
 </html>`;
-    // const filePath = path.join(__dirname, 'src/public/static', 'home.html');
-    // console.log(filePath);
-    //   res.send(html);
   
   // instead of appending the table to the body, pass it to the callback
   callback(null,html);
-  }
-});
-
   
+}
+
+function createTableRow(filenameC,filenameO) {
+  // Implementation of createtablerow function goes here
+  
+    // Create the table row
+    let $row = $("<tr></tr>");
+  
+    let $filenameCCell_OCell = $("<td></td>").text(filenameC+filenameO);
+    $row.append($filenameCCell_OCell);
+    // let filenameO = $("<td></td>");;
+    // Add the filename to the table
+    // let $textC = $("<td></td>").text($textCell);
+    // $row.append($textC);
+  
+    // Add the links to the table
+    let linkUrlC = `/src/Site1/Accueil.html?linkUrlC=\\${filenameC}`;
+    let $linkC_Chifa = $("<td></td>").html(`<a href="${linkUrlC}">Go to Page Accueil-C.html</a>`);
+    $row.append($linkC_Chifa);
+  
+    let linkUrlO = `/src/Site1/Accueil.html?linkUrlO=\\${filenameO}`;
+    let $linkC_Ordonnance = $("<td></td>").html(`<a href="${linkUrlO}">Go to Page Accueil-O.html</a>`);
+    $row.append($linkC_Ordonnance);
+    // let linkUrl_C_O = `\\src\\Site1\\Accueil.html?linkUrlC=${imageOrder[i]}&linkUrlO=${imageOrder[i+1]}`;
+  
+    let linkUrl_C_O = `src/Site1/Accueil.html?linkUrlC=\\${filenameC}&linkUrlO=\\${filenameO}`;
+    let $linkC_Chifa_Ord = $("<td></td>").html(`<a href="${linkUrl_C_O}">Go to Page Accueil-C-O.html</a>`);
+    $row.append($linkC_Chifa_Ord);
+    // Add the row to the table
+    // $table.prepend($row);
+      // }
+  
+    return $row;
+  
+}
+
   const request = require('request');
 
   // Define the message parameters
