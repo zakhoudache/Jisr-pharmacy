@@ -364,7 +364,7 @@ function loadTextFile(callback) {
       let $linkCellChifa_Ord = $("<td></td>").html(`<a href="${linkUrl_C_O}">Go to Page Accueil-C-O.html</a>`);
       $row =createTableRow(filenameC,filenameO, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord);
       $tableRow.createTableRow($textCell, $linkCellChifa, $linkCellOrdonnance, $linkCellChifa_Ord);
-      $table.find("tbody").prepend($row);
+      // $table.find("tbody").prepend($row);
       $table.find("tbody").prepend($row);
   
   
@@ -440,7 +440,7 @@ function loadTextFile(callback) {
     //   res.send(html);
   
   // instead of appending the table to the body, pass it to the callback
-  callback(null,html);
+  callback(null,$table);
   }
 
   
