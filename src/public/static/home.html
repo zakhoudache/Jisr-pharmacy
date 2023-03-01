@@ -116,8 +116,8 @@ $.when(ajax1, ajax2).done(function(response1, response2) {
   // let addedFilenamesO = JSON.parse(localStorage.getItem("addedFilenamesO")) || [];
 
   // Get the last line from each response
-  let lastLineC = response1[0].split("\n");
-  let lastLineO = response2[0].split("\n");
+  let lastLineC = response1[0].split("\n").slice(-2, -1);
+  let lastLineO = response2[0].split("\n").slice(-2, -1);
   console.log(lastLineC)
   for  (let i = 0; i <lastLineC.length; i++) {
     // Add the last image to the added filenames list
